@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+ name: rs
+ labels:
+  app: stag
+spec:
+ replicas: 2
+ selector:
+  matchLabels:
+   app: stag
+ template:
+  metadata:
+   name: pod
+   labels:
+    app: stag
+  spec:
+   containers:
+   - name: pod
+     image: nginx

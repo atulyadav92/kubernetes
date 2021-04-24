@@ -1,0 +1,21 @@
+# use the following command to taint your node
+# kubectl taint node node-name key=value:NoSchedule
+# kubectl label node env=dev
+# we labeled the node so we can launch our pod to tainted pod 
+# To have more fun refer to this URL https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
+apiVersion: v1
+kind: Pod
+metadata:
+ name: podtoleration
+ labels:
+  name: podtolerations
+spec:
+ nodeSelector:
+  env: dev
+ containers:
+ - name: nginx
+   image: nginx
+ tolerations:
+ - key: color
+   operator: Exists
+   effect: NoSchedule
