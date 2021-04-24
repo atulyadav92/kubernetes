@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: podrl
+ labels:
+  tst: rl
+spec:
+#add pod specification
+ containers:
+ - name: resourcelimittest
+   image: nginx
+#pod hardening so it can only use limited resources
+   resources:
+    requests:
+     memory: 64Mi
+     cpu: 0.3
+    limits: 
+     memory: 128Mi
+     cpu: 0.5
