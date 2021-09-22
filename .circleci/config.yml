@@ -17,6 +17,9 @@ jobs:
           name: "Say patola"
           command: "echo ${CIRCLE_TAG}"
   build-on-tag:
+    docker:
+      - image: cimg/base:stable
+      
     steps:
       - checkout
       - run: 
