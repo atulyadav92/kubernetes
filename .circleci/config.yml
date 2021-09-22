@@ -12,7 +12,7 @@ workflows:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           region: AWS_ECR_DEFAULT_REGION
           context: aws-ecr1
-          repo: ${CIRCLE_PROJECT_REPONAME}
+          repo: test-tag
           tag: "${CUSTOM_TAG}"
           pre-steps: 
             - run: 
