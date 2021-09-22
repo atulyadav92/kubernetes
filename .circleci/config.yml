@@ -13,8 +13,9 @@ jobs:
        - run: 
           name: "hello"
           command: |
-             echo ${CIRCLE_TAG} | sed 's/client-//g' 
-             echo "NEW_TAG = $(${CIRCLE_TAG} | sed 's/client-//g')" | tee -a $BASH_ENV
+   #          echo ${CIRCLE_TAG} | sed 's/client-//g' 
+    #         echo variable_name=$( echo "client-0.6" | sed 's/client-//g' ) | tee -a $BASH_ENV
+              CUSTOM_TAG=$( echo "${CUSTOM_TAG}" | sed 's/client-//g' )
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
