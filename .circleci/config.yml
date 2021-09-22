@@ -15,6 +15,7 @@ jobs:
           command: |
               echo "CUSTOM_TAG=$( echo "${CIRCLE_TAG}" | sed 's/client-//g' )"  >> $BASH_ENV
               source $BASH_ENV
+              echo ${CUSTOM_TAG}
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
