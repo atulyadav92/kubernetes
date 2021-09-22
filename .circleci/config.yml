@@ -1,31 +1,19 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
-# Invoke jobs via workflows
-jobs:
-  build-on-tag:
-    docker:
-        - image: cimg/base:stable
-    parameters: # parameters are at the job level
-      tag:
-        type: string
-        default: mycompany
-    steps:
-       - run: 
-          name: "hello"
-          command: |
-            echo ${CUSTOM_TAG}
-          #    echo "CUSTOM_TAG=$( echo "${CIRCLE_TAG}" | sed 's/client-//g' )"  >> $BASH_ENV
-           #   source $BASH_ENV
-              
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+
+orbs:
+  aws-ecr: circleci/aws-ecr@7.2.0
+
 workflows:
-  say-hello-workflow:
+  build-on-tag:
     jobs:
-      - build-on-tag:
-          tag: ${CUSTOM_TAG}
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          region: AWS_ECR_DEFAULT_REGION
+          context: aws-ecr1
+          repo: ${CIRCLE_PROJECT_REPONAME}
+          tag: "${CUSTOM_TAG}"
           pre-steps: 
             - run: 
               name: "pre-steps-for-job"
@@ -34,10 +22,5 @@ workflows:
                   source $BASH_ENV
                   echo ${CUSTOM_TAG}
           filters:
-              tags:
-                only: /^client-.*/
-         # filters:
-          #  tags:
-          #     only: /^client-.*/
-          #  branches:
-          #     ignore: /.*/
+            tags:
+              only: /^client-.*/
