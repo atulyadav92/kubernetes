@@ -8,7 +8,10 @@ jobs:
   build-on-tag:
     docker:
         - image: cimg/base:stable
-      
+    parameters: # parameters are at the job level
+      tag:
+        type: string
+        default: mycompany
     steps:
        - run: 
           name: "hello"
