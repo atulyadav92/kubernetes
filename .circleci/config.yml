@@ -27,8 +27,8 @@ jobs:
 workflows:
   say-hello-workflow:
     jobs:
-      - build-on-tag
-        filters:
-          tags:
-            only: /^client-.*/
+      - build-on-tag:
+          filters:
+            tags:
+              only: /^client-.*/
             
