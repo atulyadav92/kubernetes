@@ -19,7 +19,7 @@ jobs:
   build-on-tag:
     steps:
       - checkout
-      -run: 
+      - run: 
          name: "hello"
          command: "echo ${CIRCLE_TAG}"
 # Invoke jobs via workflows
