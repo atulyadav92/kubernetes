@@ -3,37 +3,22 @@
 version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
-jobs:
-  say-test:
-    # Specify the execution environment.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    steps:
-      - checkout
-      - run:
-          name: "Say patola"
-          command: "echo ${CIRCLE_TAG}"
-  build-on-tag:
-    docker:
-      - image: cimg/base:stable
-      
-    steps:
-      - checkout
-      - run: 
-         name: "hello"
-         command: "echo ${CIRCLE_TAG} tag"
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
       - build-on-tag:
+          docker:
+            - image: cimg/base:stable
+      
+          pre-steps:
+            - run: 
+              name: "hello"
+              command: |
+                "echo ${CIRCLE_TAG} tag"
           filters:
-            tags:
-              only: /^client-.*/
-            branches:
-              ignore: /.*/
-            
+              tags:
+                only: /^client-.*/
+              branches:
+                ignore: /.*/
