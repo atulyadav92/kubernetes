@@ -16,11 +16,10 @@ workflows:
           tag: "${CUSTOM_TAG}"
           pre-steps: 
             - run: 
-              name: "pre-steps-for-job"
-              command: |
-                  echo "CUSTOM_TAG=$( echo "${CIRCLE_TAG}" | sed 's/client-//g' )"  >> $BASH_ENV
-                  source $BASH_ENV
-                  echo ${CUSTOM_TAG}
+                command: |
+                    echo "CUSTOM_TAG=$( echo "${CIRCLE_TAG}" | sed 's/client-//g' )"  >> $BASH_ENV
+                    source $BASH_ENV
+                    echo ${CUSTOM_TAG}
           filters:
             tags:
               only: /^client-.*/
