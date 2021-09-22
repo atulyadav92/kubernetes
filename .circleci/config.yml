@@ -16,6 +16,7 @@ workflows:
           tag: "${CUSTOM_TAG}"
           pre-steps: 
             - run: 
+                name: "pre-steps-for-build"
                 command: |
                     echo "CUSTOM_TAG=$( echo "${CIRCLE_TAG}" | sed 's/client-//g' )"  >> $BASH_ENV
                     source $BASH_ENV
