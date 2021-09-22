@@ -13,7 +13,7 @@ workflows:
           region: AWS_ECR_DEFAULT_REGION
           context: aws-ecr1
           repo: test-tag
-          path: ./test/Dockerfile
+          path: test/
           tag: "${CUSTOM_TAG}"
           pre-steps: 
             - run: 
