@@ -5,15 +5,15 @@ metadata:
  labels:
   app: na
 spec:
-  affinity:
-   nodeAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-     nodeSelectorTerms:
-     - matchExpressions:
-       - key: env
-         operator: In
-         values:
-         - dev
+#  affinity:
+#   nodeAffinity:
+#    requiredDuringSchedulingIgnoredDuringExecution:
+#     nodeSelectorTerms:
+#     - matchExpressions:
+#       - key: env
+#         operator: In
+#         values:
+#         - dev
   containers:
    - name: nginx
      image: nginx
