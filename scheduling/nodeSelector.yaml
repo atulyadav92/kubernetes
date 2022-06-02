@@ -15,8 +15,8 @@ spec:
    labels:
     app: ns
   spec:
-   nodeSelector:
-    env: dev
+#   nodeSelector:
+#    env: dev
    containers:
    - name: nginx
      image: nginx
